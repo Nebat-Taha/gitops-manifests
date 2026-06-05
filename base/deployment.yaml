@@ -15,5 +15,6 @@ spec:
       containers:
       - name: gitops-app
         image: nebat/gitops-python-app:latest # The image from your CI!
+        imagePullPolicy: Always
         ports:
         - containerPort: 8000
