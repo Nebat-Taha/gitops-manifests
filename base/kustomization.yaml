@@ -5,4 +5,4 @@ resources:
 - service.yaml
 images:
 - name: nebat/gitops-python-app
-  newTag: de85e508f4c895356376dd62dea9cf0c9b6a7fe9
+  newTag: latest
