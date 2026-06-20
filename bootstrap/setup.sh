@@ -3,8 +3,9 @@
 
 set -e # Exit immediately if a command fails
 
-echo "🚀 Starting Minikube..."
-minikube start
+# Use your specific driver to ensure consistency!
+echo "🚀 Starting Minikube with Docker driver..."
+minikube start --driver=docker 
 
 echo "📦 Creating argocd namespace..."
 kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
