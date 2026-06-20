@@ -7,8 +7,11 @@ set -e # Exit immediately if a command fails
 echo "🚀 Starting Minikube with Docker driver..."
 minikube start --driver=docker 
 
-echo "📦 Creating argocd namespace..."
-kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
+echo "🔗 Applying CRDs..."
+kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds/minimal-install.yaml
+
+echo "⚙️ Applying ArgoCD manifests..."
+kubectl apply -n argocd -f bootstrap/argocd-install.yaml
 
 echo "⚙️ Applying ArgoCD manifests..."
 kubectl apply -n argocd -f bootstrap/argocd-install.yaml
