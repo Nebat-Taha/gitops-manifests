@@ -5,18 +5,16 @@ set -e # Exit immediately if a command fails
 
 # Use your specific driver to ensure consistency!
 echo "🚀 Starting Minikube with Docker driver..."
-minikube start --driver=docker 
+minikube start --driver=docker
 
-echo "🔗 Applying CRDs..."
-kubectl apply -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/crds/minimal-install.yaml
+echo "📦 Creating argocd namespace..."
+kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
 
-echo "⚙️ Applying ArgoCD manifests..."
-kubectl apply -n argocd -f bootstrap/argocd-install.yaml
+echo "⚙️ Applying ArgoCD manifests using Server-Side Apply..."
+# The --server-side flag is the key to preventing "Too long" errors
+kubectl apply -n argocd --server-side -f bootstrap/argocd-install.yaml
 
-echo "⚙️ Applying ArgoCD manifests..."
-kubectl apply -n argocd -f bootstrap/argocd-install.yaml
-
-echo "⏳ Waiting for ArgoCD to become ready (this may take a minute)..."
+echo "⏳ Waiting for ArgoCD to become ready..."
 kubectl rollout status deployment/argocd-server -n argocd --timeout=300s
 
 echo "--------------------------------------------------------"
