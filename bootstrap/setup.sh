@@ -16,7 +16,7 @@ echo "⏳ Waiting for ArgoCD to become ready (this may take a minute)..."
 kubectl rollout status deployment/argocd-server -n argocd --timeout=300s
 
 echo "--------------------------------------------------------"
-echo "✅ Bootstrap complete!"
+echo "Bootstrap complete!"
 echo "ArgoCD is now running in the 'argocd' namespace."
 echo "Use the following command to retrieve the initial password:"
 echo "kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d; echo"
