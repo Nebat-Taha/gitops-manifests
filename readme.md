@@ -91,4 +91,4 @@ gitops-manifests/
 
 ## Demo
 
-[Watch the project walkthrough on YouTube](YOUR_YOUTUBE_DEMO_LINK)
+[Watch the project walkthrough on YouTube]([YOUR_YOUTUBE_DEMO_LINK](https://youtu.be/zAM_jwJR8T0))
